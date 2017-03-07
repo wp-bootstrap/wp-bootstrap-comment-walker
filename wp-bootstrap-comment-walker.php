@@ -1,13 +1,16 @@
 <?php
-/**
- * A custom WordPress comment walker class to implement the Bootstrap 3 Media object in wordpress comment list.
- *
- * @package     WP Bootstrap Comment Walker
- * @version     1.0.0
- * @author      Edi Amin <to.ediamin@gmail.com>
- * @license     http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
- * @link        https://github.com/ediamin/wp-bootstrap-comment-walker
- */
+ /*
+ * Plugin Name: WP Bootstrap Comment Walker
+ * Plugin URI:  https://github.com/wp-bootstrap/wp-bootstrap-comment-walker
+ * Version: 2.0.5
+ * Description: A WordPress class to format WordPress Comments to Twitter Bootstrap.
+ * Author: WP-Bootstrap
+ * Author URI: https://github.com/wp-bootstrap
+ * GitHub Plugin URI: https://github.com/wp-bootstrap/wp-bootstrap-comment-walker
+ * GitHub Branch: master
+ * License: GPL-3.0+
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+*/
 
 class Bootstrap_Comment_Walker extends Walker_Comment {
 	/**
@@ -24,7 +27,7 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 	 */
 	protected function html5_comment( $comment, $depth, $args ) {
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
-?>		
+?>
 		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent media' : 'media' ); ?>>
 
 			<?php if ( 0 != $args['avatar_size'] ): ?>
@@ -38,7 +41,7 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 			<div class="media-body">
 
 				<?php printf( '<h4 class="media-heading">%s</h4>', get_comment_author_link() ); ?>
-				
+
 				<div class="comment-metadata">
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
 						<time datetime="<?php comment_time( 'c' ); ?>">
@@ -49,12 +52,12 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 				<p class="comment-awaiting-moderation label label-info"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
-				<?php endif; ?>				
+				<?php endif; ?>
 
 				<div class="comment-content">
 					<?php comment_text(); ?>
 				</div><!-- .comment-content -->
-				
+
 				<ul class="list-inline">
 					<?php edit_comment_link( __( 'Edit' ), '<li class="edit-link">', '</li>' ); ?>
 
@@ -65,12 +68,12 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 							'max_depth' => $args['max_depth'],
 							'before'    => '<li class="reply-link">',
 							'after'     => '</li>'
-						) ) );	
+						) ) );
 					?>
 
 				</ul>
 
-			</div>		
+			</div>
 <?php
-	}	
+	}
 }
